@@ -57,8 +57,11 @@ export class TaskComponent implements OnInit {
   }
 
   public onRemoveByDoHomework() {
-    this.f.formArray.controls = this.f.formArray.controls.filter((control: FormGroup) => !control.value.isDoHomework);
-    this.f.formArray.setControl(this.f.formArray.controls);
+    const remove = () => {
+      this.formGroup.value.formArray.forEach((f: Task, i: number) => f.isDoHomework && this.f.formArray.removeAt(i));
+      this.isBulk() && remove();
+    }
+    remove();
     this.saveDataToDB();
   }
 
