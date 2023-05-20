@@ -80,9 +80,9 @@ export class TaskComponent implements OnInit {
       const titleA = a.value.doHomework;
       const titleB = b.value.doHomework;
       if (dateA < dateB) {
-        return 1;
+        return this.sortOrder === 'asc' ? 1 : -1;
       } else if (dateA > dateB) {
-        return -1;
+        return this.sortOrder === 'desc' ? 1 : -1;
       } else {
         if (titleA < titleB) {
           return this.sortOrder === 'asc' ? 1 : -1;
